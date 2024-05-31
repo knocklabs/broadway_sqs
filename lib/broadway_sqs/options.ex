@@ -113,14 +113,35 @@ defmodule BroadwaySQS.Options do
               {:name, :attribute_names},
               {:allowed_members,
                [
-                 :sender_id,
-                 :sent_timestamp,
-                 :approximate_receive_count,
                  :approximate_first_receive_timestamp,
-                 :sequence_number,
+                 :approximate_number_of_messages,
+                 :approximate_number_of_messages_delayed,
+                 :approximate_number_of_messages_not_visible,
+                 :approximate_receive_count,
+                 :aws_trace_header,
+                 :content_based_deduplication,
+                 :created_timestamp,
+                 :deduplication_scope,
+                 :delay_seconds,
+                 :fifo_queue,
+                 :fifo_throughput_limit,
+                 :kms_data_key_reuse_period_seconds,
+                 :kms_master_key_id,
+                 :last_modified_timestamp,
+                 :maximum_message_size,
                  :message_deduplication_id,
                  :message_group_id,
-                 :aws_trace_header
+                 :message_retention_period,
+                 :policy,
+                 :queue_arn,
+                 :receive_message_wait_time_seconds,
+                 :redrive_allow_policy,
+                 :redrive_policy,
+                 :sender_id,
+                 :sent_timestamp,
+                 :sequence_number,
+                 :sqs_managed_sse_enabled,
+                 :visibility_timeout
                ]}
             ]
           ]
@@ -132,14 +153,35 @@ defmodule BroadwaySQS.Options do
         a list if you want to retrieve all attributes. Supported
         values are:
 
-            * `:sender_id`
-            * `:sent_timestamp`
-            * `:approximate_receive_count`
             * `:approximate_first_receive_timestamp`
-            * `:sequence_number`
+            * `:approximate_number_of_messages`
+            * `:approximate_number_of_messages_delayed`
+            * `:approximate_number_of_messages_not_visible`
+            * `:approximate_receive_count`
+            * `:aws_trace_header`
+            * `:content_based_deduplication`
+            * `:created_timestamp`
+            * `:deduplication_scope`
+            * `:delay_seconds`
+            * `:fifo_queue`
+            * `:fifo_throughput_limit`
+            * `:kms_data_key_reuse_period_seconds`
+            * `:kms_master_key_id`
+            * `:last_modified_timestamp`
+            * `:maximum_message_size`
             * `:message_deduplication_id`
             * `:message_group_id`
-            * `:aws_trace_header`
+            * `:message_retention_period`
+            * `:policy`
+            * `:queue_arn`
+            * `:receive_message_wait_time_seconds`
+            * `:redrive_allow_policy`
+            * `:redrive_policy`
+            * `:sender_id`
+            * `:sent_timestamp`
+            * `:sequence_number`
+            * `:sqs_managed_sse_enabled`
+            * `:visibility_timeout`
 
         """
       ],
@@ -220,9 +262,7 @@ defmodule BroadwaySQS.Options do
       {:ok, value}
     else
       {:error,
-       "expected :#{name} to be a list with possible members #{inspect(allowed_members)}, got: #{
-         inspect(value)
-       }"}
+       "expected :#{name} to be a list with possible members #{inspect(allowed_members)}, got: #{inspect(value)}"}
     end
   end
 end
